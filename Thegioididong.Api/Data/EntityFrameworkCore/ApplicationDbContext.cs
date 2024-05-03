@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Thegioididong.Api.Contracts.Data.Entities;
+using Thegioididong.Api.Contracts.Data.Entities.Common;
 using Thegioididong.Api.Data.Entities;
 
 namespace Thegioididong.Api.Data.EntityFrameworkCore

@@ -1,4 +1,4 @@
-﻿namespace Thegioididong.Api.Contracts.Data.Entities
+﻿namespace Thegioididong.Api.Contracts.Data.Entities.Common
 {
     public interface IEntityBase<T>
     {

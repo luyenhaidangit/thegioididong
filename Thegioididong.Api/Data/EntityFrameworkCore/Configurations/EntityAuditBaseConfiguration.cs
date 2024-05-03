@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Thegioididong.Api.Contracts.Data.Entities;
+using Thegioididong.Api.Contracts.Data.Entities.Common;
 
 namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
 {

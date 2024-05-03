@@ -1,4 +1,4 @@
-﻿namespace Thegioididong.Api.Contracts.Data.Entities
+﻿namespace Thegioididong.Api.Contracts.Data.Entities.Common
 {
     public abstract class EntityAuditBase<T> : EntityBase<T>, IEntityAuditBase<T>
     {
@@ -6,8 +6,8 @@
 
         //public DateTimeOffset? LastModifiedDate { get; set; }
 
-        public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; set; }
 
-        public DateTimeOffset UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; set; }
     }
 }
