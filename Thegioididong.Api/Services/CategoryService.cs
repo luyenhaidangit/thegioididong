@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Thegioididong.Api.Attributes;
 using Thegioididong.Api.Data.Entities;
 using Thegioididong.Api.Repositories.Interfaces;
 using Thegioididong.Api.Services.Interfaces;
 
 namespace Thegioididong.Api.Services
 {
+    [ScopedRegistration]
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _repository;

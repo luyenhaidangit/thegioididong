@@ -18,11 +18,6 @@ try
     builder.Host.AddAppConfigurations(builder.Configuration,builder.Environment);
     builder.Services.AddInfrastructure(builder.Configuration);
 
-    builder.Services.AddScoped(typeof(IRepositoryBase<,,>), typeof(RepositoryBase<,,>));
-    builder.Services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
-    builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-    builder.Services.AddScoped<ICategoryService, CategoryService>();
-
     var app = builder.Build();
     app.UseInfrastructure();
     app.Run();
