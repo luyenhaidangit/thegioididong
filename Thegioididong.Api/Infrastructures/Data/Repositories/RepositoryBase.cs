@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore;
-using Thegioididong.Api.Contracts.Data.Entities;
 using Thegioididong.Api.Contracts.Data.Repositories;
 using Thegioididong.Api.Contracts.Data.UnitOfWork;
+using Thegioididong.Api.Contracts.Data.Entities.Common;
 
 namespace Thegioididong.Api.Infrastructures.Data.Repositories
 {

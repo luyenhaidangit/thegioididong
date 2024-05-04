@@ -2,13 +2,13 @@
 
 namespace Thegioididong.Api.Data.Entities
 {
-    public class Category : EntityAuditBase<long>
+    public class Post : EntityAuditBase<long>
     {
         public string Name { get; set; }
 
-        public int ParentId { get; set; }
-
         public string? Description { get; set; }
+
+        public string? Content { get; set; }
 
         public string Status { get; set; }
 
@@ -16,12 +16,12 @@ namespace Thegioididong.Api.Data.Entities
 
         public string AuthorType { get; set; }
 
-        public string? Icon { get; set; }
+        public bool IsFeatured { get; set; }
 
-        public int Order { get; set; }
+        public string? Image { get; set; }
 
-        public int IsFeatured { get; set; }
+        public uint Views { get; set; }
 
-        public int IsDefault { get; set; }
+        public string? FormatType { get; set; }
     }
 }

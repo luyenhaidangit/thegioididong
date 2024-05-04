@@ -1,4 +1,4 @@
-﻿namespace Thegioididong.Api.Contracts.Data.Entities
+﻿namespace Thegioididong.Api.Contracts.Data.Entities.Common
 {
     public interface IDateTracking
     {
@@ -6,8 +6,8 @@
 
         //DateTimeOffset? LastModifiedDate { get; set; }
 
-        DateTimeOffset CreatedAt { get; set; }
+        DateTimeOffset? CreatedAt { get; set; }
 
-        DateTimeOffset UpdatedAt { get; set; }
+        DateTimeOffset? UpdatedAt { get; set; }
     }
 }

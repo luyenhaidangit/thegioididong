@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using Thegioididong.Api.Contracts.Data.Entities;
+using Thegioididong.Api.Contracts.Data.Entities.Common;
 using Thegioididong.Api.Contracts.Data.Repositories;
 
 namespace Thegioididong.Api.Infrastructures.Data.Repositories
