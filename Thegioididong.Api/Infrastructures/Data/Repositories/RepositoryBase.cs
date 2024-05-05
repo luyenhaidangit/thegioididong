@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Thegioididong.Api.Contracts.Data.Repositories;
 using Thegioididong.Api.Contracts.Data.UnitOfWork;
 using Thegioididong.Api.Contracts.Data.Entities.Common;
+using Thegioididong.Api.Attributes;
 
 namespace Thegioididong.Api.Infrastructures.Data.Repositories
 {

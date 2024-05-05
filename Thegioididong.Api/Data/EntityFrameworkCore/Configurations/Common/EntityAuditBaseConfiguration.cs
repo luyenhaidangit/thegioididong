@@ -4,7 +4,7 @@ using Thegioididong.Api.Contracts.Data.Entities.Common;
 
 namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
 {
-    public class EntityAuditBaseConfiguration<T> : IEntityTypeConfiguration<T> where T : EntityAuditBase<long>
+    public class EntityAuditBaseConfiguration<T,K> : IEntityTypeConfiguration<T> where T : EntityAuditBase<K>
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {

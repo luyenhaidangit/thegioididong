@@ -1,4 +1,6 @@
-﻿using Thegioididong.Api.Contracts.Data.Entities.Common;
+﻿using System.Collections;
+using System.ComponentModel.DataAnnotations.Schema;
+using Thegioididong.Api.Contracts.Data.Entities.Common;
 
 namespace Thegioididong.Api.Data.Entities
 {
@@ -6,7 +8,7 @@ namespace Thegioididong.Api.Data.Entities
     {
         public string Name { get; set; }
 
-        public int ParentId { get; set; }
+        public long ParentId { get; set; }
 
         public string? Description { get; set; }
 
@@ -23,5 +25,17 @@ namespace Thegioididong.Api.Data.Entities
         public int IsFeatured { get; set; }
 
         public int IsDefault { get; set; }
+
+        #region Relationship
+        public virtual IEnumerable<Post> Posts { get; set; }
+
+        public virtual IEnumerable<Slug> Slugs { get; set; }
+
+        [NotMapped]
+        public virtual Slug? Slug { get; set; }
+
+        [ForeignKey("ParentId")]
+        public virtual Category? Parent { get; set; }
+        #endregion
     }
 }

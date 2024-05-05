@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Thegioididong.Api.Attributes;
 using Thegioididong.Api.Contracts.Data.UnitOfWork;
 
 namespace Thegioididong.Api.Infrastructures.Data.UnitOfWork

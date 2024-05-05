@@ -8,10 +8,10 @@ using Thegioididong.Api.Repositories.Interfaces;
 namespace Thegioididong.Api.Repositories
 {
     [ScopedRegistration]
-    public class CategoryRepository : RepositoryBase<Category, long,ApplicationDbContext>, ICategoryRepository
+    public class PostRepository : RepositoryBase<Post, long, ApplicationDbContext>, IPostRepository
     {
-        public CategoryRepository(ApplicationDbContext dbContext, IUnitOfWork<ApplicationDbContext> unitOfWork) : base(dbContext, unitOfWork)
-        { 
+        public PostRepository(ApplicationDbContext dbContext, IUnitOfWork<ApplicationDbContext> unitOfWork) : base(dbContext, unitOfWork)
+        {
         }
     }
 }
