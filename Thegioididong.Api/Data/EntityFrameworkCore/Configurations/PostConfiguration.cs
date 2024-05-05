@@ -4,7 +4,7 @@ using Thegioididong.Api.Data.Entities;
 
 namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
 {
-    public class PostConfiguration : EntityAuditBaseConfiguration<Post>
+    public class PostConfiguration : EntityAuditBaseConfiguration<Post,long>
     {
         public override void Configure(EntityTypeBuilder<Post> builder)
         {

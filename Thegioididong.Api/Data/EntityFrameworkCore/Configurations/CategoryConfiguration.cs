@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Reflection.Emit;
 using Thegioididong.Api.Data.Entities;
-using Thegioididong.Api.Data.EntityFrameworkCore.Configurations.Common;
 
 namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
 {
-    public class CategoryConfiguration : EntityAuditBaseConfiguration<Category>
+    public class CategoryConfiguration : EntityAuditBaseConfiguration<Category,long>
     {
         public override void Configure(EntityTypeBuilder<Category> builder)
         {
@@ -13,7 +13,7 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
 
             builder.ToTable("Categories");
 
-            #region Index
+            #region Indexes
             builder.HasIndex(b => b.ParentId);
 
             builder.HasIndex(b => b.Status);
@@ -21,7 +21,7 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
             builder.HasIndex(b => b.CreatedAt);
             #endregion
 
-            #region Columns
+            #region Properties
             builder.Property(b => b.Name)
                    .IsRequired()
                    .HasMaxLength(120)
@@ -70,6 +70,10 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
                    .IsRequired()
                    .HasColumnName("is_default")
                    .HasDefaultValue(0);
+            #endregion
+
+            #region Relationships
+            builder.HasMany(c => c.Slugs).WithOne().HasForeignKey(s => s.ReferenceId);
             #endregion
         }
     }

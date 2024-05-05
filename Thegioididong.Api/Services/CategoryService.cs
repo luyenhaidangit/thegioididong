@@ -1,26 +1,53 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Thegioididong.Api.Attributes;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Thegioididong.Api.Data.Entities;
-using Thegioididong.Api.Repositories.Interfaces;
-using Thegioididong.Api.Services.Interfaces;
+using Thegioididong.Api.Data.EntityFrameworkCore;
+using Thegioididong.Api.Enums.Common;
+using Thegioididong.Api.Infrastructures.Extensions;
+using Thegioididong.Api.Models.Blog.Category;
+using System.Linq.Dynamic.Core;
+using System.Reflection;
+using Thegioididong.Api.Models.Responses;
+using System.Globalization;
 
 namespace Thegioididong.Api.Services
 {
-    [ScopedRegistration]
-    public class CategoryService : ICategoryService
+    public class CategoryService
     {
-        private readonly ICategoryRepository _repository;
+        private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public CategoryService(ICategoryRepository repository) 
+        public CategoryService(ApplicationDbContext dbContext,IMapper mapper) 
         {
-            _repository = repository;
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Category>> GetProductsAsync()
+        #region Core
+        #endregion
+
+        #region Bussiness
+        public async Task<PagingResult<Category>> GetCategoriesPagingAsync(GetCategoryRequest request)
         {
-            var result = await _repository.FindAll().ToListAsync();
+            var query = _dbContext.Categories
+            .Include(x => x.Slugs)
+            .Where(x => x.Status == BaseStatusEnum.Published.ToEnumMember())
+            .AsQueryable();
+
+            int total = await query.CountAsync();
+
+            string orderString = request.OrderBy + " " + request.SortBy;
+
+            var items = await query
+            .OrderBy(orderString)
+            .Skip((request.PageIndex - 1) * request.PageSize)
+            .Take(request.PageSize)
+            .ToListAsync();
+
+            var result = new PagingResult<Category>(items, request.PageIndex, request.PageSize, request.SortBy, request.OrderBy, total);
 
             return result;
         }
+        #endregion
     }
 }

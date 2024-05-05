@@ -8,11 +8,11 @@ namespace Thegioididong.Api.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        private readonly IPostService _postService;
+        //private readonly IPostService _postService;
 
-        public PostController(IPostService postService)
-        {
-            _postService = postService;
-        }
+        //public PostController(IPostService postService)
+        //{
+        //    _postService = postService;
+        //}
     }
 }

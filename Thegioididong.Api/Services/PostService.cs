@@ -7,11 +7,11 @@ namespace Thegioididong.Api.Services
     [ScopedRegistration]
     public class PostService : IPostService
     {
-        private readonly IPostRepository _postRepository;
+        //private readonly IPostRepository _postRepository;
 
-        public PostService(IPostRepository postRepository)
-        {
-            _postRepository = postRepository;
-        }
+        //public PostService(IPostRepository postRepository)
+        //{
+        //    _postRepository = postRepository;
+        //}
     }
 }

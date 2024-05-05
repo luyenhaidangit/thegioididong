@@ -14,6 +14,7 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
             builder.ApplyConfiguration(new PostTranslationConfiguration());
             builder.ApplyConfiguration(new TagConfiguration());
             builder.ApplyConfiguration(new TagTranslationConfiguration());
+            builder.ApplyConfiguration(new SlugConfiguration());
             #endregion
         }
     }

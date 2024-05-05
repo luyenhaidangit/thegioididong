@@ -11,7 +11,7 @@ namespace Thegioididong.Api.Repositories
     public class CategoryRepository : RepositoryBase<Category, long,ApplicationDbContext>, ICategoryRepository
     {
         public CategoryRepository(ApplicationDbContext dbContext, IUnitOfWork<ApplicationDbContext> unitOfWork) : base(dbContext, unitOfWork)
-        {
+        { 
         }
     }
 }

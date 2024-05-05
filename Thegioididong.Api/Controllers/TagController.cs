@@ -8,11 +8,11 @@ namespace Thegioididong.Api.Controllers
     [ApiController]
     public class TagController : ControllerBase
     {
-        private readonly ITagService _tagService;
+        //private readonly ITagService _tagService;
 
-        public TagController(ITagService tagService)
-        {
-            _tagService = tagService;
-        }
+        //public TagController(ITagService tagService)
+        //{
+        //    _tagService = tagService;
+        //}
     }
 }
