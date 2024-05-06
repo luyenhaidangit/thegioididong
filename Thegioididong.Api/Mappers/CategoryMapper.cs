@@ -13,7 +13,7 @@ namespace Thegioididong.Api.Mappers
             .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => src.Slugs.FirstOrDefault(x => x.ReferenceType == Constants.Common.Slug.CategoryReferenceType).Key ?? null));
 
             CreateMap<Category, CategoryListDto>()
-            .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => src.Slugs.FirstOrDefault(x => x.ReferenceType == Constants.Common.Slug.CategoryReferenceType)))
+            .ForMember(dest => dest.Slug, opt => opt.MapFrom(src => src.Slugs.FirstOrDefault(x => x.ReferenceType == Constants.Common.Slug.CategoryReferenceType).Key ?? null))
             .ForMember(dest => dest.Childrens, opt => opt.MapFrom(src => src.Childrens))
             .ForMember(dest => dest.Parent, opt => opt.MapFrom(src => src.Parent));
 

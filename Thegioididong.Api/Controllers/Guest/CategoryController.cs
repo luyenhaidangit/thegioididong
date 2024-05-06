@@ -4,6 +4,7 @@ using Thegioididong.Api.Data.Entities;
 using Thegioididong.Api.Models.Blog.Category;
 using Thegioididong.Api.Models.Responses;
 using Thegioididong.Api.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Thegioididong.Api.Controllers.Guest
 {
@@ -55,6 +56,23 @@ namespace Thegioididong.Api.Controllers.Guest
                 Status = true,
                 Message = "Danh sách danh mục đã được lấy thành công!",
                 Data = itemsConvert
+            };
+
+            return Ok(result);
+        }
+
+        [HttpGet("{slug}")]
+        public async Task<IActionResult> FindBySlug([FromRoute] string slug)
+        {
+            var data = await _categoryService.FindBySlug(slug);
+
+            var dataConvert = _mapper.Map<CategoryListDto>(data);
+
+            var result = new ApiResult<CategoryListDto>()
+            {
+                Status = true,
+                Message = "Lấy danh mục thành công!",
+                Data = dataConvert
             };
 
             return Ok(result);

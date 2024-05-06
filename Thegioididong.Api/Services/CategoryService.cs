@@ -9,6 +9,8 @@ using System.Linq.Dynamic.Core;
 using System.Reflection;
 using Thegioididong.Api.Models.Responses;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Thegioididong.Api.Exceptions.Common;
 
 namespace Thegioididong.Api.Services
 {
@@ -66,6 +68,32 @@ namespace Thegioididong.Api.Services
             var result = new PagingResult<Category>(items, request.PageIndex, request.PageSize, request.SortBy, request.OrderBy, total);
 
             return result;
+        }
+
+        /// <summary>
+        /// Find by slug
+        /// </summary>
+        public async Task<Category> FindBySlug(string slug)
+        {
+            var slugObj = await _dbContext.Slugs.FirstOrDefaultAsync(s => s.Key == slug && s.ReferenceType == Constants.Common.Slug.CategoryReferenceType);
+
+            if (slugObj == null)
+            {
+                throw new NotFoundException("Slug thể loại không tồn tại trong hệ thống!");
+            };
+
+            var category = await _dbContext.Categories
+                .Include(x => x.Slugs)
+                .Include(x => x.Childrens)
+                .Where(x => x.Status == BaseStatusEnum.Published.ToEnumMember())
+                .FirstOrDefaultAsync(s => s.Id == slugObj.ReferenceId);
+
+            if(category == null)
+            {
+                throw new NotFoundException("Thể loại không tồn tại trong hệ thống!");
+            };
+
+            return category;
         }
         #endregion
     }
