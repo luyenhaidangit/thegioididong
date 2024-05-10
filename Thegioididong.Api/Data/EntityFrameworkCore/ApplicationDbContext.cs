@@ -11,6 +11,7 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
         }
 
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Slug> Slugs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

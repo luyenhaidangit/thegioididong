@@ -1,4 +1,6 @@
-﻿namespace Thegioididong.Api.Extensions
+﻿using Thegioididong.Api.Middlewares;
+
+namespace Thegioididong.Api.Extensions
 {
     public static class ApplicationExtension
     {
@@ -25,6 +27,8 @@
                 //});
                 endpoints.MapDefaultControllerRoute();
             });
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
         }
     }
 }

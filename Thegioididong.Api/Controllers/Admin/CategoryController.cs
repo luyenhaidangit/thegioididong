@@ -25,20 +25,5 @@ namespace Thegioididong.Api.Controllers.Admin
         {
             _categoryService = categoryService;
         }
-
-        [HttpGet("")]
-        public async Task<IActionResult> GetCategoriesPagingAsync([FromQuery] GetCategoryRequest request)
-        {
-            var data = await _categoryService.GetCategoriesPagingAsync(request);
-
-            var result = new ApiResult<PagingResult<Category>>()
-            {
-                Status = true,
-                Message = "Danh sách banner đã được lấy thành công!",
-                Data = data
-            };
-
-            return Ok(result);
-        }
     }
 }

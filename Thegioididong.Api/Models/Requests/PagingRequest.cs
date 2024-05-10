@@ -8,23 +8,27 @@ namespace Thegioididong.Api.Models.Parameters
 
         private int _pageSize = PagingConstant.DefaultPageSize;
 
-        public int PageIndex
-        {
-            get => _pageIndex;
-            set => _pageIndex = value < 1 ? 1 : value;
-        }
+        //public int PageIndex
+        //{
+        //    get => _pageIndex;
+        //    set => _pageIndex = value < 1 ? 1 : value;
+        //}
 
-        public int PageSize
-        {
-            get => _pageSize;
-            set
-            {
-                if (value < 1)
-                    _pageSize = value < 1 ? PagingConstant.DefaultPageSize : value;
-                else
-                    _pageSize = value;
-            }
-        }
+        //public int PageSize
+        //{
+        //    get => _pageSize;
+        //    set
+        //    {
+        //        if (value < 1)
+        //            _pageSize = value < 1 ? PagingConstant.DefaultPageSize : value;
+        //        else
+        //            _pageSize = value;
+        //    }
+        //}
+
+        public int PageIndex { get; set; }
+
+        public int PageSize { get; set; }
 
         public string OrderBy { get; set; } = PagingConstant.DefaultOrderBy;
 

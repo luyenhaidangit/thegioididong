@@ -42,12 +42,12 @@
 
         public int TotalPages => (int)Math.Ceiling((double)TotalRecords / PageSize);
 
-        public bool HasPrevious => PageIndex > 1;
+        //public bool HasPrevious => PageIndex > 1;
 
-        public bool HasNext => PageIndex < TotalPages;
+        //public bool HasNext => PageIndex < TotalPages;
 
-        public int FirstRowOnPage => TotalRecords > 0 ? (PageIndex - 1) * PageSize + 1 : 0;
+        //public int FirstRowOnPage => TotalRecords > 0 ? (PageIndex - 1) * PageSize + 1 : 0;
 
-        public int LastRowOnPage => (int)Math.Min(PageIndex * PageSize, TotalRecords);
+        //public int LastRowOnPage => (int)Math.Min(PageIndex * PageSize, TotalRecords);
     }
 }

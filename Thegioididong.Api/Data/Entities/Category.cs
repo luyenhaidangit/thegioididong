@@ -36,6 +36,8 @@ namespace Thegioididong.Api.Data.Entities
 
         [ForeignKey("ParentId")]
         public virtual Category? Parent { get; set; }
+
+        public virtual List<Category>? Childrens { get; set; }
         #endregion
     }
 }

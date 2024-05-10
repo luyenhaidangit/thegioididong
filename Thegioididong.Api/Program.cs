@@ -1,17 +1,22 @@
 using Serilog;
-using Thegioididong.Api.Extensions;
+using Thegioididong.Api.Bootstrapping;
 
-var builder = WebApplication.CreateBuilder(args);
-
-Log.Information($"Start {builder.Environment.ApplicationName} up");
+var builder = WebApplication.CreateBuilder(args).ConfigureWebAppBuilders();
 
 try
 {
-    builder.Host.AddAppConfigurations(builder.Configuration,builder.Environment);
-    builder.Services.AddInfrastructure(builder.Configuration);
+    //Configurations
+    builder.Host.ConfigureHosts();
 
+    builder.Services.ConfigureServices(builder.Configuration);
+
+    //Build
     var app = builder.Build();
-    app.UseInfrastructure();
+
+    Log.Information($"Start {builder.Environment.ApplicationName}");
+
+    app.UseApplicationConfigurations();
+
     app.Run();
 }
 catch (Exception ex)
