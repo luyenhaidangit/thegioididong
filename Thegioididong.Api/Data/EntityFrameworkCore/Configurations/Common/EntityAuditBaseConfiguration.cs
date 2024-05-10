@@ -12,13 +12,13 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
 
             builder.Property(b => b.Id)
                   .IsRequired()
-                  .HasColumnName("id");
+                  .HasColumnName("Id");
 
             builder.Property(b => b.CreatedAt)
-                   .HasColumnName("created_at");
+                   .HasColumnName("CreatedAt");
 
             builder.Property(b => b.UpdatedAt)
-                   .HasColumnName("updated_at");
+                   .HasColumnName("UpdatedAt");
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Thegioididong.Api.Bootstrapping
             services.AddSwaggerGen();
 
             //Common
+            services.AddLogging();
             services.AddAutoMapperConfiguration();
             services.AddDependencyInjectionConfiguration();
 

@@ -13,6 +13,10 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
         public DbSet<Category> Categories { get; set; }
         public DbSet<Slug> Slugs { get; set; }
 
+        #region Ecommerce
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

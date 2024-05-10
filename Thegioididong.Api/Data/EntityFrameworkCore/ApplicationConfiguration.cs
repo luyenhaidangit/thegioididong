@@ -16,6 +16,10 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
             builder.ApplyConfiguration(new TagTranslationConfiguration());
             builder.ApplyConfiguration(new SlugConfiguration());
             #endregion
+
+            #region Ecommerce
+            builder.ApplyConfiguration(new ProductCategoryConfiguration());
+            #endregion
         }
     }
 }
