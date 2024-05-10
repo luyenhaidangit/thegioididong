@@ -19,6 +19,7 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
 
             #region Ecommerce
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
             #endregion
         }
     }

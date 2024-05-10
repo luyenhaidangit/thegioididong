@@ -1,10 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Thegioididong.Api.Contracts.Data.Entities.Common;
-
-namespace Thegioididong.Api.Data.Entities
+﻿namespace Thegioididong.Api.Models.Ecommerce.ProductCategory
 {
-    public class ProductCategory : EntityAuditBase<int>
+    public class ProductCategoryTree
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public int? ParentId { get; set; }
@@ -23,10 +22,8 @@ namespace Thegioididong.Api.Data.Entities
 
         public string? IconImage { get; set; }
 
-        #region Relationship
-        public virtual List<ProductCategory> Childrens { get; set; }
+        public int ProductCount { get; set; }
 
-        public virtual List<Product> Products { get; set; }
-        #endregion
+        public List<ProductCategoryTree> Childrens { get; set; }
     }
 }

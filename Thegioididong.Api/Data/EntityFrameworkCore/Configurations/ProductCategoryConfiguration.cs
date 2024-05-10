@@ -8,6 +8,8 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
         public override void Configure(EntityTypeBuilder<ProductCategory> builder)
         {
             base.Configure(builder);
+
+            builder.Ignore(c => c.Childrens);
         }
     }
 }
