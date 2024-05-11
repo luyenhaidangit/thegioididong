@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
-using System.Net;
 using Thegioididong.Api.Exceptions.Common;
+using Thegioididong.Api.Models.Responses;
+using Thegioididong.Api.Resolvers;
 
 namespace Thegioididong.Api.Middlewares
 {
@@ -27,14 +28,47 @@ namespace Thegioididong.Api.Middlewares
 
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new LowercaseContractResolver(),
+                Formatting = Formatting.Indented
+            };
+
             var statusCode = GetStatusCode(exception);
 
             context.Response.ContentType = "application/json";
 
             context.Response.StatusCode = statusCode;
 
-            var jsonErrorResponse = JsonConvert.SerializeObject(exception);
+            var result = new ApiExceptionResult<object>()
+            {
+                Status = false,
+                Message = exception.Message,
+                Exception = exception,
+                Data = null
+            };
+
+            var jsonErrorResponse = JsonConvert.SerializeObject(result, settings);
+
             await context.Response.WriteAsync(jsonErrorResponse);
+        }
+
+        private static int GetStatusCode(Exception exception)
+        {
+            switch (exception)
+            {
+                case BadRequestException:
+                    return StatusCodes.Status400BadRequest;
+
+                case NotFoundException:
+                    return StatusCodes.Status404NotFound;
+
+                case FormatException:
+                    return StatusCodes.Status422UnprocessableEntity;
+
+                default:
+                    return StatusCodes.Status500InternalServerError;
+            }
         }
 
         //private readonly ILogger<ExceptionHandlingMiddleware> _logger;
@@ -81,21 +115,6 @@ namespace Thegioididong.Api.Middlewares
 
         //     await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
         // }
-
-        private static int GetStatusCode(Exception exception)
-        {
-            switch (exception)
-            {
-                case NotFoundException:
-                    return StatusCodes.Status404NotFound;
-
-                case FormatException:
-                    return StatusCodes.Status422UnprocessableEntity;
-
-                default:
-                    return StatusCodes.Status500InternalServerError;
-            }
-        }
 
         //private static string GetTitle(Exception exception) =>
         //exception switch

@@ -19,6 +19,7 @@ namespace Thegioididong.Api.Bootstrapping
             services.AddLogging();
             services.AddAutoMapperConfiguration();
             services.AddDependencyInjectionConfiguration();
+            services.AddFluentValidationConfiguration();
 
             //Data
             services.AddEntityFrameworkCoreConfiguration(configuration);

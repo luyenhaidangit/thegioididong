@@ -1,18 +1,23 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Thegioididong.Api.Data.Entities;
 using Thegioididong.Api.Data.EntityFrameworkCore;
+using Thegioididong.Api.Exceptions.Common;
 using Thegioididong.Api.Models.Ecommerce.ProductCategory;
+using Thegioididong.Api.Models.Requests;
 
 namespace Thegioididong.Api.Services
 {
     public class ProductCategoryService
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;   
 
         public ProductCategoryService(ApplicationDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         #region Core
@@ -39,6 +44,56 @@ namespace Thegioididong.Api.Services
                 .ToList();
 
             return rootCategories;
+        }
+
+        public async Task<ProductCategory> CreateAsync(CreateProductCategoryRequest request)
+        {
+            var existParentCategory = await _dbContext.ProductCategories.AnyAsync(x => x.Id == request.ParentId);
+
+            if (!existParentCategory)
+            {
+                throw new BadRequestException("The specified parent category ID does not exist.");
+            }
+
+            var category = _mapper.Map<ProductCategory>(request);
+
+            await _dbContext.ProductCategories.AddAsync(category);
+
+            await _dbContext.SaveChangesAsync();
+
+            return category;
+        }
+
+        public async Task<ProductCategory> EditAsync(EditProductCategoryRequest request)
+        {
+            var category = await _dbContext.ProductCategories.FindAsync(request.Id);
+
+            if (category is null)
+            {
+                throw new BadRequestException("The category ID does not exist.");
+            }
+
+            category = _mapper.Map<ProductCategory>(request);
+
+            await _dbContext.SaveChangesAsync();
+
+            return category;
+        }
+
+        public async Task<ProductCategory> DeleteAsync(EntityIdentityRequest<int> request)
+        {
+            var category = await _dbContext.ProductCategories.FindAsync(request.Id);
+
+            if (category is null)
+            {
+                throw new BadRequestException("The category ID does not exist.");
+            }
+
+            _dbContext.ProductCategories.Remove(category);
+
+            await _dbContext.SaveChangesAsync();
+
+            return category;
         }
         #endregion
     }

@@ -6,12 +6,12 @@ namespace Thegioididong.Api.Enums.Common
     public enum BaseStatusEnum
     {
         [EnumMember(Value = "published")]
-        Published,
+        Published = 1,
 
         [EnumMember(Value = "draft")]
-        Draft,
+        Draft = 2,
 
         [EnumMember(Value = "pending")]
-        Pending,
+        Pending = 3,
     }
 }

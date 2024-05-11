@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
-using Thegioididong.Api.Models.Blog.Category;
+using Thegioididong.Api.Constants.Responses;
+using Thegioididong.Api.Data.Entities;
 using Thegioididong.Api.Models.Ecommerce.ProductCategory;
+using Thegioididong.Api.Models.Requests;
 using Thegioididong.Api.Models.Responses;
 using Thegioididong.Api.Services;
-using Thegioididong.Api.Services.Interfaces;
 
 namespace Thegioididong.Api.Controllers.Admin
 {
-    [Route("api/[controller]")]
+    [Route("api/admin/[controller]")]
     [ApiController]
     public class ProductCategoryController : ControllerBase
     {
@@ -32,8 +32,53 @@ namespace Thegioididong.Api.Controllers.Admin
             var result = new ApiResult<List<ProductCategoryTree>>()
             {
                 Status = true,
-                Message = "Danh sách danh mục đã được lấy thành công!",
+                Message = NoticeConstant.GetSuccessMessage,
                 Data = dataConvert
+            };
+
+            return Ok(result);
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAsync([FromBody] CreateProductCategoryRequest request)
+        {
+            var data = await _productCategoryService.CreateAsync(request);
+
+            var result = new ApiResult<ProductCategory>()
+            {
+                Status = true,
+                Message = NoticeConstant.CreateSuccessMessage,
+                Data = data
+            };
+
+            return Ok(result);
+        }
+
+        [HttpPost("edit")]
+        public async Task<IActionResult> EditAsync([FromBody] EditProductCategoryRequest request)
+        {
+            var data = await _productCategoryService.EditAsync(request);
+
+            var result = new ApiResult<ProductCategory>()
+            {
+                Status = true,
+                Message = NoticeConstant.EditSuccessMessage,
+                Data = data
+            };
+
+            return Ok(result);
+        }
+
+        [HttpPost("delete")]
+        public async Task<IActionResult> DeleteAsync([FromBody] EntityIdentityRequest<int> request)
+        {
+            var data = await _productCategoryService.DeleteAsync(request);
+
+            var result = new ApiResult<ProductCategory>()
+            {
+                Status = true,
+                Message = NoticeConstant.DeleteSuccessMessage,
+                Data = data
             };
 
             return Ok(result);
