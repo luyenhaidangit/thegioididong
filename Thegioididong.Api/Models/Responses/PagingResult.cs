@@ -4,19 +4,17 @@
     {
         public PagingResult(List<T> items, int pageIndex, int pageSize, int totalRecords)
         {
-            Items = items;
-
             PageIndex = pageIndex;
 
             PageSize = pageSize;
 
             TotalRecords = totalRecords;
+
+            Items = items;
         }
 
         public PagingResult(List<T> items, int pageIndex, int pageSize, string? sortBy, string? orderBy, int totalRecords)
         {
-            Items = items;
-
             PageIndex = pageIndex;
 
             PageSize = pageSize;
@@ -26,9 +24,9 @@
             OrderBy = orderBy;
 
             TotalRecords = totalRecords;
-        }
 
-        public List<T>? Items { set; get; }
+            Items = items;
+        }
 
         public int PageIndex { get; set; }
 
@@ -41,6 +39,8 @@
         public int TotalRecords { get; set; }
 
         public int TotalPages => (int)Math.Ceiling((double)TotalRecords / PageSize);
+
+        public List<T>? Items { set; get; }
 
         //public bool HasPrevious => PageIndex > 1;
 

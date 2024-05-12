@@ -8,7 +8,9 @@ namespace Thegioididong.Api.Bootstrapping
         public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
             //Api
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+            });
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
             //Documentation
@@ -29,6 +31,11 @@ namespace Thegioididong.Api.Bootstrapping
 
         public static WebApplication UseApplicationConfigurations(this WebApplication app)
         {
+            app.UseCors(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.UseSwaggerConfiguration();
 
             app.UseHttpsRedirection();
@@ -37,6 +44,7 @@ namespace Thegioididong.Api.Bootstrapping
 
             app.MapControllers();
 
+            app.UseMiddleware<BadRequestHandlingMiddleware>();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             return app;

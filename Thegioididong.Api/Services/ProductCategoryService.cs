@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using Thegioididong.Api.Data.Entities;
 using Thegioididong.Api.Data.EntityFrameworkCore;
 using Thegioididong.Api.Exceptions.Common;
+using Thegioididong.Api.Helpers;
 using Thegioididong.Api.Models.Ecommerce.ProductCategory;
 using Thegioididong.Api.Models.Requests;
 
@@ -24,6 +26,7 @@ namespace Thegioididong.Api.Services
         #endregion
 
         #region Admin
+        // CRUD
         public async Task<List<ProductCategory>> GetProductCategoiesTreeAsync()
         {
             var categoriesWithChildren = await _dbContext.ProductCategories
@@ -94,6 +97,23 @@ namespace Thegioididong.Api.Services
             await _dbContext.SaveChangesAsync();
 
             return category;
+        }
+
+        public async Task<bool> CheckExistByPropertiesAsync(CheckExistByPropertiesRequest request)
+        {
+            var exist = false;
+
+            if (request.PropertyName == "id")
+            {
+                exist = await _dbContext.ProductCategories.AnyAsync(x => x.Id == int.Parse(request.Value));
+            }
+
+            if (request.PropertyName == "slug")
+            {
+                exist = await _dbContext.ProductCategories.AnyAsync(x => x.Slug == request.Value);
+            }
+
+            return exist;
         }
         #endregion
     }

@@ -83,5 +83,20 @@ namespace Thegioididong.Api.Controllers.Admin
 
             return Ok(result);
         }
+
+        [HttpGet("check-exist-by-properties")]
+        public async Task<IActionResult> CheckExistByPropertiesAsync([FromQuery] CheckExistByPropertiesRequest request)
+        {
+            var data = await _productCategoryService.CheckExistByPropertiesAsync(request);
+
+            var result = new ApiResult<bool>()
+            {
+                Status = true,
+                Message = NoticeConstant.GetSuccessMessage,
+                Data = data
+            };
+
+            return Ok(result);
+        }
     }
 }

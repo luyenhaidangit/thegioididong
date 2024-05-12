@@ -24,14 +24,14 @@ CREATE TABLE ProductCategories
 INSERT INTO ProductCategories
 (Name, ParentId, Description, Status, [Order], Image, IsFeatured, Slug, Icon, IconImage, CreatedAt, UpdatedAt)
 VALUES
-('Truyền hình', 0, NULL, 1, 0, 'product-categories/p-1.png', 1, 'television', 'flaticon-tv', NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Âm thanh & Rạp hát tại gia', 1, NULL, 1, 0, NULL, 0, 'home-audio-theaters', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('TV & Videos', 1, NULL, 1, 1, NULL, 0, 'tv-videos', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Máy ảnh, Ảnh & Videos', 1, NULL, 1, 2, NULL, 0, 'camera-photos-videos', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Điện thoại & Phụ kiện', 1, NULL, 1, 3, NULL, 0, 'cellphones-accessories', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Tai nghe', 1, NULL, 1, 4, NULL, 0, 'headphones', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Trò chơi điện tử', 1, NULL, 1, 5, NULL, 0, 'video-games', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Loa không dây', 1, NULL, 1, 6, NULL, 0, 'wireless-speakers', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Đồ điện tử văn phòng', 1, NULL, 1, 7, NULL, 0, 'office-electronics', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
-('Di động', 0, NULL, 1, 1, 'product-categories/p-2.png', 1, 'mobile', 'flaticon-responsive', NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52');
+(N'Truyền hình', NULL, NULL, 1, 0, 'product-categories/p-1.png', 1, 'television', 'flaticon-tv', NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Âm thanh & Rạp hát tại gia', 1, NULL, 1, 0, NULL, 0, 'home-audio-theaters', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'TV & Videos', 1, NULL, 1, 1, NULL, 0, 'tv-videos', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Máy ảnh, Ảnh & Videos', 1, NULL, 1, 2, NULL, 0, 'camera-photos-videos', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Điện thoại & Phụ kiện', 1, NULL, 1, 3, NULL, 0, 'cellphones-accessories', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Tai nghe', 1, NULL, 1, 4, NULL, 0, 'headphones', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Trò chơi điện tử', 1, NULL, 1, 5, NULL, 0, 'video-games', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Loa không dây', 1, NULL, 1, 6, NULL, 0, 'wireless-speakers', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Đồ điện tử văn phòng', 1, NULL, 1, 7, NULL, 0, 'office-electronics', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Di động', NULL, NULL, 1, 1, 'product-categories/p-2.png', 1, 'mobile', 'flaticon-responsive', NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52');
 GO
