@@ -84,8 +84,23 @@ namespace Thegioididong.Api.Controllers.Admin
             return Ok(result);
         }
 
-        [HttpGet("check-exist-by-properties")]
-        public async Task<IActionResult> CheckExistByPropertiesAsync([FromQuery] CheckExistByPropertiesRequest request)
+        [HttpGet("generate-slug")]
+        public async Task<IActionResult> GenerateSlugAsync([FromQuery] string slug)
+        {
+            var data = await _productCategoryService.GenerateSlugAsync(slug);
+
+            var result = new ApiResult<string>()
+            {
+                Status = true,
+                Message = NoticeConstant.DeleteSuccessMessage,
+                Data = data
+            };
+
+            return Ok(result);
+        }
+
+        [HttpGet("check-exist-by-property")]
+        public async Task<IActionResult> CheckExistByPropertyAsync([FromQuery] CheckExistByPropertiesRequest request)
         {
             var data = await _productCategoryService.CheckExistByPropertiesAsync(request);
 

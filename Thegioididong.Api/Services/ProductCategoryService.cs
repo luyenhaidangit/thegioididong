@@ -99,6 +99,26 @@ namespace Thegioididong.Api.Services
             return category;
         }
 
+        public async Task<string> GenerateSlugAsync(string slug)
+        {
+            var existSlug = await _dbContext.ProductCategories.AnyAsync(x => x.Slug == slug);
+
+            if (existSlug)
+            {
+                int index = 1;
+
+                do
+                {
+                    slug = $"{slug}-{index}";
+                    existSlug = await _dbContext.ProductCategories.AnyAsync(x => x.Slug == slug);
+                    index++;
+                }
+                while (existSlug);
+            }
+
+            return slug;
+        }
+
         public async Task<bool> CheckExistByPropertiesAsync(CheckExistByPropertiesRequest request)
         {
             var exist = false;
