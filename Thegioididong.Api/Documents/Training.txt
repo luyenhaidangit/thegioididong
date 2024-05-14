@@ -1,0 +1,132 @@
+﻿-----------------------------
+1. Generate class entities
+-----------------------------
+-- SQL --
+-- Table: ProductCategory
+BEGIN
+IF OBJECT_ID('ProductCategories', 'U') IS NOT NULL
+    DROP TABLE ProductCategories;
+
+CREATE TABLE ProductCategories
+(
+    Id          INT IDENTITY(1,1) PRIMARY KEY,
+    Name        NVARCHAR(255) NOT NULL,
+    ParentId    INT,
+    Description NVARCHAR(512),
+    Status      INT NOT NULL,
+    [Order]     INT NOT NULL,
+    Image       NVARCHAR(255),
+    IsFeatured  BIT NOT NULL,
+    Slug        NVARCHAR(255) NOT NULL,
+    Icon        NVARCHAR(255),
+    IconImage   NVARCHAR(255),
+    CreatedAt   DATETIME2,
+    UpdatedAt   DATETIME2
+);
+
+INSERT INTO ProductCategories
+(Name, ParentId, Description, Status, [Order], Image, IsFeatured, Slug, Icon, IconImage, CreatedAt, UpdatedAt)
+VALUES
+(N'Truyền hình', NULL, NULL, 1, 0, 'product-categories/p-1.png', 1, 'television', 'flaticon-tv', NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Âm thanh & Rạp hát tại gia', 1, NULL, 1, 0, NULL, 0, 'home-audio-theaters', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'TV & Videos', 1, NULL, 1, 1, NULL, 0, 'tv-videos', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Máy ảnh, Ảnh & Videos', 1, NULL, 1, 2, NULL, 0, 'camera-photos-videos', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Điện thoại & Phụ kiện', 1, NULL, 1, 3, NULL, 0, 'cellphones-accessories', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Tai nghe', 1, NULL, 1, 4, NULL, 0, 'headphones', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Trò chơi điện tử', 1, NULL, 1, 5, NULL, 0, 'video-games', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Loa không dây', 1, NULL, 1, 6, NULL, 0, 'wireless-speakers', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Đồ điện tử văn phòng', 1, NULL, 1, 7, NULL, 0, 'office-electronics', NULL, NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52'),
+(N'Di động', NULL, NULL, 1, 1, 'product-categories/p-2.png', 1, 'mobile', 'flaticon-responsive', NULL, '2024-04-26 02:47:52', '2024-04-26 02:47:52');
+END;
+
+-- Entities --
+using Thegioididong.Api.Contracts.Data.Entities.Common;
+
+namespace Thegioididong.Api.Data.Entities
+{
+    public class ProductCategory : EntityAuditBase<int>
+    {
+        public string Name { get; set; }
+
+        public int? ParentId { get; set; }
+
+        public string? Description { get; set; }
+
+        public int Status { get; set; }
+
+        public int Order { get; set; }
+
+        public string Slug { get; set; }
+
+        public string? Image { get; set; }
+
+        public bool IsFeatured { get; set; }
+
+        public string? Icon { get; set; }
+
+        public string? IconImage { get; set; }
+
+        #region Relationship
+        public virtual List<ProductCategory> Childrens { get; set; }
+
+        public virtual List<Product> Products { get; set; }
+        #endregion
+    }
+}
+
+-- Configurations --
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Thegioididong.Api.Data.Entities;
+
+namespace Thegioididong.Api.Data.EntityFrameworkCore.Configurations
+{
+    public class ProductCategoryConfiguration : EntityAuditBaseConfiguration<ProductCategory,int>
+    {
+        public override void Configure(EntityTypeBuilder<ProductCategory> builder)
+        {
+            base.Configure(builder);
+
+            builder.Ignore(c => c.Childrens);
+        }
+    }
+}
+
+
+-- Apply Configurations --
+using Microsoft.EntityFrameworkCore;
+using Thegioididong.Api.Data.EntityFrameworkCore.Configurations;
+
+namespace Thegioididong.Api.Data.EntityFrameworkCore
+{
+    public static class ApplicationConfiguration
+    {
+        public static void ApplyApplicationConfigurations(this ModelBuilder builder)
+        {
+            #region Ecommerce
+            builder.ApplyConfiguration(new ProductCategoryConfiguration());
+            #endregion
+        }
+    }
+}
+
+-- Apply DbContext --
+using Microsoft.EntityFrameworkCore;
+using Thegioididong.Api.Contracts.Data.Entities.Common;
+using Thegioididong.Api.Data.Entities;
+
+namespace Thegioididong.Api.Data.EntityFrameworkCore
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        #region Ecommerce
+        public DbSet<ProductCategory> ProductCategories { get; set; }
+        #endregion
+    }
+}
+
+
+

@@ -21,6 +21,12 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             #endregion
+
+            #region Media
+            builder.ApplyConfiguration(new MediaFileConfiguration());
+            builder.ApplyConfiguration(new MediaFolderConfiguration());
+            builder.ApplyConfiguration(new MediaSettingConfiguration());
+            #endregion
         }
     }
 }

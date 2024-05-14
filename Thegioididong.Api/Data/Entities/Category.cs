@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using Thegioididong.Api.Contracts.Data.Entities.Common;
 
 namespace Thegioididong.Api.Data.Entities

@@ -18,6 +18,12 @@ namespace Thegioididong.Api.Data.EntityFrameworkCore
         public DbSet<Product> Products { get; set; }
         #endregion
 
+        #region Media
+        public DbSet<MediaFile> MediaFiles { get; set; }
+        public DbSet<MediaFolder> MediaFolders { get; set; }
+        public DbSet<MediaSetting> MediaSettings { get; set; }
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
