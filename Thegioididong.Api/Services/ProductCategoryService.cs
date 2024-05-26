@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using Thegioididong.Api.Data.Entities;
 using Thegioididong.Api.Data.EntityFrameworkCore;
 using Thegioididong.Api.Exceptions.Common;
-using Thegioididong.Api.Helpers;
 using Thegioididong.Api.Models.Ecommerce.ProductCategory;
 using Thegioididong.Api.Models.Requests;
 

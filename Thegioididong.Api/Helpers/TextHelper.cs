@@ -26,5 +26,10 @@ namespace Thegioididong.Api.Helpers
 
             return slug;
         }
+
+        public static string GenerateTimeBased()
+        {
+            return DateTime.UtcNow.ToString("yyyyMMddHHmmss");
+        }
     }
 }

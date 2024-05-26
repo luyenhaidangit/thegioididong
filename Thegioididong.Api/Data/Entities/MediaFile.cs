@@ -10,7 +10,7 @@ namespace Thegioididong.Api.Data.Entities
 
         public string? AltText { get; set; }
 
-        public int FolderId { get; set; }
+        public int? FolderId { get; set; }
 
         public string MimeType { get; set; }
 

@@ -21,6 +21,7 @@
   <ItemGroup>
     <Folder Include="Contracts\Engine\Builders\" />
     <Folder Include="Enums\Blog\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

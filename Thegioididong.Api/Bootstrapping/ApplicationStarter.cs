@@ -1,4 +1,5 @@
 ﻿using Thegioididong.Api.Configurations;
+using Thegioididong.Api.Data.EntityFrameworkCore;
 using Thegioididong.Api.Middlewares;
 
 namespace Thegioididong.Api.Bootstrapping

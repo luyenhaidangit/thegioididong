@@ -6,10 +6,7 @@ using Thegioididong.Api.Enums.Common;
 using Thegioididong.Api.Infrastructures.Extensions;
 using Thegioididong.Api.Models.Blog.Category;
 using System.Linq.Dynamic.Core;
-using System.Reflection;
 using Thegioididong.Api.Models.Responses;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using Thegioididong.Api.Exceptions.Common;
 
 namespace Thegioididong.Api.Services

@@ -10,7 +10,7 @@ namespace Thegioididong.Api.Configurations
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-            }, ServiceLifetime.Scoped);
+            });
 
             return services;
         }

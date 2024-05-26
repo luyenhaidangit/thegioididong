@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Thegioididong.Api.Data.EntityFrameworkCore;
 using Thegioididong.Api.Exceptions.Common;
+using Thegioididong.Api.Helpers;
 using Thegioididong.Api.Models.Responses;
 using Thegioididong.Api.Resolvers;
 
@@ -16,12 +18,29 @@ namespace Thegioididong.Api.Middlewares
 
         public async Task Invoke(HttpContext context)
         {
+            var dbContext = context.RequestServices.GetRequiredService<ApplicationDbContext>();
+
             try
             {
+                if (ContextHelper.IsWriteOperation(context))
+                {
+                    await dbContext.Database.BeginTransactionAsync();
+                }
+
                 await _next(context);
+
+                if (ContextHelper.IsWriteOperation(context))
+                {
+                    await dbContext.Database.CommitTransactionAsync();
+                }
             }
             catch (Exception ex)
             {
+                if (ContextHelper.IsWriteOperation(context))
+                {
+                    await dbContext.Database.RollbackTransactionAsync();
+                }
+
                 await HandleExceptionAsync(context, ex);
             }
         }

@@ -76,7 +76,7 @@ CREATE TABLE MediaFiles
     UserId INT NOT NULL,
     Name NVARCHAR(191) NOT NULL,
     AltText NVARCHAR(191) NULL,
-    FolderId INT NOT NULL,
+    FolderId INT,
     MimeType NVARCHAR(120) NOT NULL,
     Size INT NOT NULL,
     URL NVARCHAR(191) NOT NULL,

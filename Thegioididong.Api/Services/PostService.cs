@@ -1,11 +1,9 @@
 ﻿using Thegioididong.Api.Attributes;
-using Thegioididong.Api.Repositories.Interfaces;
-using Thegioididong.Api.Services.Interfaces;
 
 namespace Thegioididong.Api.Services
 {
     [ScopedRegistration]
-    public class PostService : IPostService
+    public class PostService
     {
         //private readonly IPostRepository _postRepository;
 
